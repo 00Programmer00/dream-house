@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ApplicationModule } from './app.module';
+import * as helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(ApplicationModule);
@@ -7,6 +8,7 @@ async function bootstrap() {
     methods: 'GET',
     maxAge: 3600
   });
+  app.use(helmet());
   await app.listen(process.env.PORT || 4000);
 }
 

@@ -8,7 +8,7 @@ import { SpeakersService } from './speakers.service';
   template: `
     <h3>Houses</h3>
     <ul>
-      <li *ngFor="let speaker of speakers | async">
+      <li *ngFor="let speaker of speakers$ | async">
         <img [src]="speaker.image" class="house-img"  alt="image" />
         <span>{{ speaker.name }} - {{ speaker.talk }}</span>
       </li>
@@ -37,10 +37,10 @@ import { SpeakersService } from './speakers.service';
   ]
 })
 export class SpeakersListComponent implements OnInit {
-  speakers: Observable<Speaker[]>;
+  speakers$: Observable<Speaker[]>;
 
   constructor(private speakersService: SpeakersService) {
-    this.speakers = this.speakersService.getSpeakers();
+    this.speakers$ = this.speakersService.getSpeakers();
   }
 
   ngOnInit() {}
